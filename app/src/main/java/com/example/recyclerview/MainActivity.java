@@ -71,8 +71,17 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_reset) {
+            // clear all the elements from the list
+            mWordList.clear();
+            // add original data to the list
+            for (int i = 0; i < 20; i++) {
+                mWordList.addLast("Word " + i);
+            }
+            // notify the adapter that the data has changed
+            mRecyclerView.getAdapter().notifyDataSetChanged();
+            // scroll to the top
+            mRecyclerView.smoothScrollToPosition(0);
         }
 
         return super.onOptionsItemSelected(item);
